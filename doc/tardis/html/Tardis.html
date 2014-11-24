@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="FreqTable.html">
+<link rel="next" href="Utils.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
+<link title="FreqTable" rel="Chapter" href="FreqTable.html">
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="Utils" rel="Chapter" href="Utils.html">
+<link title="Source" rel="Chapter" href="Source.html">
+<link title="Huffman" rel="Chapter" href="Huffman.html"><title>Tardis</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="FreqTable.html" title="FreqTable">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Utils.html" title="Utils">Next</a>
+</div>
+<h1>Module <a href="type_Tardis.html">Tardis</a></h1>
+
+<pre><span class="keyword">module</span> Tardis: <code class="code">sig</code> <a href="Tardis.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Read and write "tar.dis" file.<br>
+<b>Author(s):</b> barthelemy<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+This type contains significant data of a tardis file.<br>
+</div>
+
+
+<pre><code><span id="TYPEparsing_result"><span class="keyword">type</span> <code class="type"></code>parsing_result</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparsing_result.Error"><span class="constructor">Error</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparsing_result.Ok"><span class="constructor">Ok</span></span> <span class="keyword">of</span> <code class="type"><a href="Tardis.html#TYPEt">t</a></code></code></td>
+
+</tr></table>
+
+<div class="info ">
+The type returned by the tardis parser.<br>
+</div>
+
+
+<pre><span id="VALcreate"><span class="keyword">val</span> create</span> : <code class="type">string -> <a href="Source.html#TYPEt">Source.t</a> -> <a href="PrefixCode.html#TYPEt">PrefixCode.t</a> -> <a href="PrefixCode.html#TYPEword">PrefixCode.word</a> -> <a href="Tardis.html#TYPEt">t</a></code></pre><div class="info ">
+<code class="code">create filename encoding content</code> constructs and returns a value
+    of type <code class="code">t</code>.<ul>
+<li><code class="code">filename</code>: the name of the file to compressed.</li>
+<li><code class="code">source</code> : the source to compress.</li>
+<li><code class="code">encoding</code>: the prefix code used to compress the source.</li>
+<li><code class="code">content</code>: the compressed source.</li>
+</ul>
+<br>
+</div>
+
+<pre><span id="VALget_filename"><span class="keyword">val</span> get_filename</span> : <code class="type"><a href="Tardis.html#TYPEt">t</a> -> string</code></pre><div class="info ">
+<code class="code">get_filename t</code> returns the filename contained in <code class="code">t</code>.<br>
+</div>
+
+<pre><span id="VALget_source"><span class="keyword">val</span> get_source</span> : <code class="type"><a href="Tardis.html#TYPEt">t</a> -> <a href="Source.html#TYPEt">Source.t</a></code></pre><div class="info ">
+<code class="code">get_source t</code> returns the source contained in <code class="code">t</code>.<br>
+</div>
+
+<pre><span id="VALget_encoding"><span class="keyword">val</span> get_encoding</span> : <code class="type"><a href="Tardis.html#TYPEt">t</a> -> <a href="PrefixCode.html#TYPEt">PrefixCode.t</a></code></pre><div class="info ">
+<code class="code">get_encoding t</code> returns the encoding table contained in <code class="code">t</code>.<br>
+</div>
+
+<pre><span id="VALget_content"><span class="keyword">val</span> get_content</span> : <code class="type"><a href="Tardis.html#TYPEt">t</a> -> <a href="PrefixCode.html#TYPEword">PrefixCode.word</a></code></pre><div class="info ">
+<code class="code">get_content t</code> returns the compressed data contained in <code class="code">t</code>.<br>
+</div>
+
+<pre><span id="VALwrite"><span class="keyword">val</span> write</span> : <code class="type"><a href="Tardis.html#TYPEt">t</a> -> string -> unit</code></pre><div class="info ">
+<code class="code">write t file_path</code> writes <code class="code">t</code> in the file <code class="code">file_path</code>.<br>
+<b>Raises</b> <code>Sys_error</code> if a problems occurs with file.<br>
+</div>
+
+<pre><span id="VALread"><span class="keyword">val</span> read</span> : <code class="type">string -> <a href="Tardis.html#TYPEparsing_result">parsing_result</a></code></pre><div class="info ">
+<code class="code">read file_path</code> reads the file <code class="code">file_path</code>, parses it, and
+    returns a <code class="code">parsing_result</code>.<br>
+</div>
+</body></html>

@@ -12,6 +12,8 @@
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
 <link title="FreqTable" rel="Chapter" href="FreqTable.html">
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="Utils" rel="Chapter" href="Utils.html">
 <link title="Source" rel="Chapter" href="Source.html">
 <link title="Huffman" rel="Chapter" href="Huffman.html"><title>PrefixCode</title>
 </head>
@@ -60,5 +62,9 @@ The type <code class="code">word</code> is a list of booleans and represents a b
 <pre><span id="VALencode_source"><span class="keyword">val</span> encode_source</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="Source.html#TYPEt">Source.t</a> -> <a href="PrefixCode.html#TYPEword">word</a></code></pre><div class="info ">
 <code class="code">encode_source code src</code> returns a long word which is the concatenation
     of the encoding of all symbols contained in <code class="code">src</code>.<br>
+</div>
+
+<pre><span id="VALshow"><span class="keyword">val</span> show</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> unit</code></pre><div class="info ">
+<code class="code">show code</code> print the code in the standard output<br>
 </div>
 </body></html>

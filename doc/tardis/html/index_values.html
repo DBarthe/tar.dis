@@ -9,6 +9,8 @@
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
 <link title="FreqTable" rel="Chapter" href="FreqTable.html">
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="Utils" rel="Chapter" href="Utils.html">
 <link title="Source" rel="Chapter" href="Source.html">
 <link title="Huffman" rel="Chapter" href="Huffman.html"><title>Index of values</title>
 </head>
@@ -17,6 +19,17 @@
 &nbsp;</div>
 <h1>Index of values</h1>
 <table>
+<tr><td align="left"><br></td></tr>
+<tr><td><a href="Utils.html#VAL(-|)">(-|)</a> [<a href="Utils.html">Utils</a>]</td>
+<td><div class="info">
+<code class="code">f -| g</code> returns the composition <code class="code">f o g</code>.
+</div>
+</td></tr>
+<tr><td><a href="Utils.html#VAL(^$)">(^$)</a> [<a href="Utils.html">Utils</a>]</td>
+<td><div class="info">
+<code class="code">f ^$ x</code> returns <code class="code">f x</code>.
+</div>
+</td></tr>
 <tr><td align="left"><br>A</td></tr>
 <tr><td><a href="Huffman.html#VALalgorithm">algorithm</a> [<a href="Huffman.html">Huffman</a>]</td>
 <td><div class="info">
@@ -25,6 +38,12 @@
 </div>
 </td></tr>
 <tr><td align="left"><br>C</td></tr>
+<tr><td><a href="Tardis.html#VALcreate">create</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">create filename encoding content</code> constructs and returns a value
+    of type <code class="code">t</code>.
+</div>
+</td></tr>
 <tr><td><a href="FreqTable.html#VALcreate">create</a> [<a href="FreqTable.html">FreqTable</a>]</td>
 <td><div class="info">
 <code class="code">create src</code> returns the frequency table corresponding the source <code class="code">src</code>.
@@ -53,16 +72,60 @@
 <code class="code">from_file file_path</code> constructs a source from a file.
 </div>
 </td></tr>
+<tr><td align="left"><br>G</td></tr>
+<tr><td><a href="Tardis.html#VALget_content">get_content</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">get_content t</code> returns the compressed data contained in <code class="code">t</code>.
+</div>
+</td></tr>
+<tr><td><a href="Tardis.html#VALget_encoding">get_encoding</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">get_encoding t</code> returns the encoding table contained in <code class="code">t</code>.
+</div>
+</td></tr>
+<tr><td><a href="Tardis.html#VALget_filename">get_filename</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">get_filename t</code> returns the filename contained in <code class="code">t</code>.
+</div>
+</td></tr>
+<tr><td><a href="Tardis.html#VALget_source">get_source</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">get_source t</code> returns the source contained in <code class="code">t</code>.
+</div>
+</td></tr>
+<tr><td align="left"><br>R</td></tr>
+<tr><td><a href="Utils.html#VALrange">range</a> [<a href="Utils.html">Utils</a>]</td>
+<td><div class="info">
+<code class="code">range a b</code> returns <code class="code">[a; a+1; ...; b]</code>.
+</div>
+</td></tr>
+<tr><td><a href="Tardis.html#VALread">read</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">read file_path</code> reads the file <code class="code">file_path</code>, parses it, and
+    returns a <code class="code">parsing_result</code>.
+</div>
+</td></tr>
 <tr><td align="left"><br>S</td></tr>
 <tr><td><a href="PrefixCode.html#VALset">set</a> [<a href="PrefixCode.html">PrefixCode</a>]</td>
 <td><div class="info">
 <code class="code">set code sym word</code> defines the encoding of <code class="code">sym</code>.
 </div>
 </td></tr>
+<tr><td><a href="PrefixCode.html#VALshow">show</a> [<a href="PrefixCode.html">PrefixCode</a>]</td>
+<td><div class="info">
+<code class="code">show code</code> print the code in the standard output
+</div>
+</td></tr>
 <tr><td align="left"><br>U</td></tr>
 <tr><td><a href="PrefixCode.html#VALunset">unset</a> [<a href="PrefixCode.html">PrefixCode</a>]</td>
 <td><div class="info">
 <code class="code">unset code sym</code> removes the definition of the encoding of <code class="code">sym</code>.
+</div>
+</td></tr>
+<tr><td align="left"><br>W</td></tr>
+<tr><td><a href="Tardis.html#VALwrite">write</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">write t file_path</code> writes <code class="code">t</code> in the file <code class="code">file_path</code>.
 </div>
 </td></tr>
 </table>

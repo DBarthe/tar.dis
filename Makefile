@@ -7,7 +7,8 @@ SOURCES =	src/utils.ml \
 			src/freqTable.ml \
 			src/prefixCode.ml \
 			src/huffman.ml \
-			src/tardis.ml
+			src/tardis.ml \
+			src/main.ml
 
 OCAMLDOCFLAGS = -charset utf-8
 DOC_FILES = $(wildcard src/*.mli)
