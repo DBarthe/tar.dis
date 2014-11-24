@@ -27,3 +27,6 @@ val encode_sym : t -> Source.byte -> word
 (** [encode_source code src] returns a long word which is the concatenation
     of the encoding of all symbols contained in [src]. *)
 val encode_source : t -> Source.t -> word
+
+(** [show code] print the code in the standard output *)
+val show : t -> unit
