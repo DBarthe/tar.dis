@@ -2,7 +2,8 @@ OCAMLMAKEFILE = OCamlMakefile
 
 RESULT = tardis
 
-SOURCES = 	src/source.ml \
+SOURCES =	src/utils.ml \
+			src/source.ml \
 			src/freqTable.ml \
 			src/prefixCode.ml \
 			src/huffman.ml \
