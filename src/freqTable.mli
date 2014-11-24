@@ -9,5 +9,5 @@
 type t = float array
 
 (** [create src] returns the frequency table corresponding the source [src].
-    @raise [Invalid_argument] if [src] contains symbols not in \[0..255\]. *)
+    @raise Invalid_argument if [src] contains symbols not in \[0..255\]. *)
 val create : Source.t -> t
