@@ -1,0 +1,41 @@
+
+FILE STRUCTURE :
+
+Length        Desc                    Value
+
+4 bytes       magic code              "TDIS"
+
+4 bytes       name_size               int
+var           name                    string of length name_size
+
+
+4 bytes       size of encoding
+              table
+1 bytes       number of bits to
+              ignore in the last
+              encoding byte.
+var           encoding table           (see below)
+
+
+4 bytes       content_size            int
+1 byte       number of bits to       [0..7]
+              ignore in the last
+              content byte.
+var:          content                  bytes ...
+
+
+TODO :
+  checksum, 
+  version of tardis
+
+
+ENCODING TABLE :
+
+1) table of sizes : 
+  sym (1 byte) -> number of bits - 1 (1 byte)
+  (the syms that dont't appear in the source are discarded)
+
+2) table of encoding
+  list of encoded binary words in the same order than the table below
+  + additional bits to fill the last byte.
+
