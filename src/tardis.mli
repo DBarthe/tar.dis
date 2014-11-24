@@ -13,12 +13,16 @@ type parsing_result = Error of string | Ok of t
 (** [create filename encoding content] constructs and returns a value
     of type [t].
       - [filename]: the name of the file to compressed.
-      - [encoding]: the code used to compress the source.
+      - [source] : the source to compress.
+      - [encoding]: the prefix code used to compress the source.
       - [content]: the compressed source. *)
-val create : string -> PrefixCode.t -> PrefixCode.word -> t
+val create : string -> Source.t -> PrefixCode.t -> PrefixCode.word -> t
 
 (** [get_filename t] returns the filename contained in [t]. *)
 val get_filename : t -> string
+
+(** [get_source t] returns the source contained in [t]. *)
+val get_source : t -> Source.t
 
 (** [get_encoding t] returns the encoding table contained in [t]. *)
 val get_encoding : t -> PrefixCode.t

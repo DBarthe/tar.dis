@@ -7,6 +7,7 @@ open Utils
 (* types *)
 type t = {
   filename : string ;
+  source : Source.t ;
   encoding : PrefixCode.t ;
   content : PrefixCode.word ;
 }
@@ -18,11 +19,14 @@ let magic_code = "TDIS"
 let basic_perm = 420 (* rw-r--r-- *)
 
 (* functions *)
-let create filename encoding content =
-  { filename; encoding; content }
+let create filename source encoding content =
+  { filename; encoding; content; source }
 
 let get_filename t =
   t.filename
+
+let get_source t =
+  t.source
 
 let get_encoding t =
   t.encoding
@@ -35,6 +39,7 @@ let open_file_out file_path =
   let flags = [
     Open_wronly;
     Open_trunc;
+    Open_creat;
     Open_binary;
   ] in
   open_out_gen flags basic_perm file_path
@@ -70,7 +75,7 @@ let write_encoding t oc =
     let whole_list = List.map
       (fun s -> (s, List.length (PrefixCode.encode_sym t.encoding s)))
       (range 0 255) in
-    List.filter ((<) 0 -| snd) whole_list in
+    List.filter (fun (s,_) -> List.mem s t.source) whole_list in
   let snd_part = 
     PrefixCode.encode_source t.encoding (List.map fst fst_part) in
   let snd_part_len = List.length snd_part in
@@ -88,7 +93,7 @@ let write_encoding t oc =
     output_byte oc l ;
   ) fst_part ;
   (* second part : corresponding binary words *)
-  write_word snd_part 
+  write_word snd_part oc
 
 let write_content t oc =
   let len = List.length t.content in 
@@ -96,7 +101,7 @@ let write_content t oc =
   let size = len / 8 + (if completion_bits != 0 then 1 else 0) in
   output_binary_int oc size ;
   output_byte oc completion_bits ;
-  write_word t.content
+  write_word t.content oc
 
 let write t file_path =
   let oc = open_file_out file_path in
