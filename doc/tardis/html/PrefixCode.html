@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="FreqTable.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
+<link title="FreqTable" rel="Chapter" href="FreqTable.html">
+<link title="Source" rel="Chapter" href="Source.html">
+<link title="Huffman" rel="Chapter" href="Huffman.html"><title>PrefixCode</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="FreqTable.html" title="FreqTable">Next</a>
+</div>
+<h1>Module <a href="type_PrefixCode.html">PrefixCode</a></h1>
+
+<pre><span class="keyword">module</span> PrefixCode: <code class="code">sig</code> <a href="PrefixCode.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Module used to represent and use prefix codes for 8-bits words.<br>
+<b>Author(s):</b> Barthelemy Delemotte<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+The type <code class="code">t</code> represents a prefix code.<br>
+</div>
+
+
+<pre><span id="TYPEword"><span class="keyword">type</span> <code class="type"></code>word</span> = <code class="type">bool list</code> </pre>
+<div class="info ">
+The type <code class="code">word</code> is a list of booleans and represents a binary word.<br>
+</div>
+
+
+<pre><span id="EXCEPTIONCoding_undef"><span class="keyword">exception</span> Coding_undef</span></pre>
+
+<pre><span id="VALempty"><span class="keyword">val</span> empty</span> : <code class="type">unit -> <a href="PrefixCode.html#TYPEt">t</a></code></pre><div class="info ">
+<code class="code">empty ()</code> returns a new fresh and undefined prefix code.<br>
+</div>
+
+<pre><span id="VALset"><span class="keyword">val</span> set</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="Source.html#TYPEbyte">Source.byte</a> -> <a href="PrefixCode.html#TYPEword">word</a> -> unit</code></pre><div class="info ">
+<code class="code">set code sym word</code> defines the encoding of <code class="code">sym</code>.<br>
+</div>
+
+<pre><span id="VALunset"><span class="keyword">val</span> unset</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="Source.html#TYPEbyte">Source.byte</a> -> unit</code></pre><div class="info ">
+<code class="code">unset code sym</code> removes the definition of the encoding of <code class="code">sym</code>.<br>
+</div>
+
+<pre><span id="VALencode_sym"><span class="keyword">val</span> encode_sym</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="Source.html#TYPEbyte">Source.byte</a> -> <a href="PrefixCode.html#TYPEword">word</a></code></pre><div class="info ">
+<code class="code">encode_sym code sym</code> returns the word which encodes <code class="code">sym</code>.<br>
+</div>
+
+<pre><span id="VALencode_source"><span class="keyword">val</span> encode_source</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="Source.html#TYPEt">Source.t</a> -> <a href="PrefixCode.html#TYPEword">word</a></code></pre><div class="info ">
+<code class="code">encode_source code src</code> returns a long word which is the concatenation
+    of the encoding of all symbols contained in <code class="code">src</code>.<br>
+</div>
+</body></html>

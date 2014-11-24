@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="PrefixCode.html">
+<link rel="next" href="Source.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
+<link title="FreqTable" rel="Chapter" href="FreqTable.html">
+<link title="Source" rel="Chapter" href="Source.html">
+<link title="Huffman" rel="Chapter" href="Huffman.html"><title>FreqTable</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="PrefixCode.html" title="PrefixCode">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Source.html" title="Source">Next</a>
+</div>
+<h1>Module <a href="type_FreqTable.html">FreqTable</a></h1>
+
+<pre><span class="keyword">module</span> FreqTable: <code class="code">sig</code> <a href="FreqTable.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Frequency table of symbols found in sources.<br>
+<b>Author(s):</b> Barthelemy Delemotte<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = <code class="type">float array</code> </pre>
+<div class="info ">
+The main type. A 256-table of probabilities. The indexes of the table
+    corresponds to the value of the binary symbols (from 0 to 255).<br>
+</div>
+
+
+<pre><span id="VALcreate"><span class="keyword">val</span> create</span> : <code class="type"><a href="Source.html#TYPEt">Source.t</a> -> <a href="FreqTable.html#TYPEt">t</a></code></pre><div class="info ">
+<code class="code">create src</code> returns the frequency table corresponding the source <code class="code">src</code>.<br>
+<b>Raises</b> <code>Invalid_argument</code> if <code class="code">src</code> contains symbols not in [0..255].<br>
+</div>
+</body></html>
