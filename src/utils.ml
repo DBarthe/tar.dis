@@ -4,8 +4,6 @@
 
 let ( -| ) f g = fun x -> f (g x)
 
-let ( ^$ ) f x = f x
-
 let range a b = 
   let rec aux accu i =
     if i < a then accu else
