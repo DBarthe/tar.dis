@@ -19,9 +19,9 @@ DOC_FILES = $(wildcard src/*.mli)
 all: libmy bc
 
 libmy:
-	make -C lib/my SOURCES= RESULT= INCDIRS= LIBS=
+	make -C lib/my INCDIRS= LIBS=
 clean-libmy:
-	make clean -C lib/my SOURCES= RESULT= INCDIRS= LIBS=
+	make clean -C lib/my INCDIRS= LIBS=
 
 
 include $(OCAMLMAKEFILE)
