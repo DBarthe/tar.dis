@@ -13,6 +13,7 @@ var           name                    string of length name_size
               table
 1 bytes       number of bits to
               ignore in the last
+4 bytes       number of symbols in the table
               encoding byte.
 var           encoding table           (see below)
 
@@ -31,7 +32,7 @@ TODO :
 
 ENCODING TABLE :
 
-1) table of sizes : 
+1) table of sizes :
   sym (1 byte) -> number of bits - 1 (1 byte)
   (the syms that dont't appear in the source are discarded)
 
