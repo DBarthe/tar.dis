@@ -7,16 +7,14 @@
 (** This type contains significant data of a tardis file. *)
 type t
 
-(** The type returned by the tardis parser. *)
-type parsing_result = Error of string | Ok of t
+(** [compress filename source] compresses the [source] and creates a [t]
+    with the name [filename]. *)
+val compress : string -> Source.t -> t
 
-(** [create filename source encoding content] constructs and returns a value
-    of type [t].
-      - [filename]: the name of the file to compressed.
-      - [source] : the source to compress.
-      - [encoding]: the prefix code used to compress the source.
-      - [content]: the compressed source. *)
-val create : string -> Source.t -> PrefixCode.t -> PrefixCode.word -> t
+(** [decompress filename encoding content] decompress the [content]
+    which has been encoded with [encoding], then creates a [t] with the
+    name [filename]. *)
+val decompress : string -> PrefixCode.t -> PrefixCode.word -> t
 
 (** [get_filename t] returns the filename contained in [t]. *)
 val get_filename : t -> string
@@ -30,10 +28,5 @@ val get_encoding : t -> PrefixCode.t
 (** [get_content t] returns the compressed data contained in [t]. *)
 val get_content : t -> PrefixCode.word
 
-(** [write t file_path] writes [t] in the file [file_path].
-    @raise Sys_error if a problems occurs with file. *)
-val write : t -> string -> unit
 
-(** [read_and_decode file_path] reads the file [file_path], parses it, and
-    returns a [parsing_result]. *)
-val read_and_decode : string -> parsing_result
+

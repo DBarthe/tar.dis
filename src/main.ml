@@ -43,23 +43,28 @@ let compress opts =
   try
     let target_filename = opts.filename ^ ".dis" 
     and source = Source.from_file opts.filename in
-    let freq_table = FreqTable.create source in
-    let encoding = Huffman.algorithm freq_table in
-    let content = PrefixCode.encode_source encoding source in
-    let tardis = Tardis.create opts.filename source encoding content in
-    Tardis.write tardis target_filename
+    let tardis = Tardis.compress opts.filename source in
+    TardisWriter.write tardis target_filename
   with
-  | Sys_error s ->
-      Printf.eprintf "error: %s: %s\n" opts.filename s ;
-      exit 1
+  | e -> raise e (* todo *)
 
 let decompress opts = 
-  ()
+  try 
+    let tardis = TardisReader.read opts.filename in
+    () (* todo *)
+  with
+  | e -> raise e (* todo *)
 
 let main () =
   let opts = parse_arguments () in
-  match opts.mode with
-  | Compress -> compress opts
-  | Decompress -> decompress opts
+  try
+    match opts.mode with
+    | Compress -> compress opts
+    | Decompress -> decompress opts
+  with
+  | Sys_error s ->
+      Printf.eprintf "error: sys_error: %s\n" s ;
+      exit 1
+
 
 let () = main ()

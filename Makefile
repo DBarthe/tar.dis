@@ -8,6 +8,9 @@ SOURCES =	src/source.ml \
 			src/prefixCode.ml \
 			src/huffman.ml \
 			src/tardis.ml \
+			src/tardisSpec.ml \
+			src/tardisWriter.ml \
+			src/tardisReader.ml \
 			src/main.ml
 
 INCDIRS = lib/my/src/
