@@ -18,7 +18,7 @@ exception Not_tardis_file
 let int2b = function 0 -> false | _ -> true
 
 let split_byte byte =
-  ListExt.init 8 (int2b -| (lsr) byte -| (-) 7)
+  ListExt.init 8 (int2b -| (land) 1 -| (lsr) byte -| (-) 7)
 
 let bits_of_bytes bytes =
   bytes |> List.map split_byte
@@ -49,9 +49,10 @@ let build_encoding fst_table snd_table =
     | (sym,len)::fst' ->
       let enc = ListExt.take len snd
       and snd' = ListExt.drop len snd in
-      if List.length enc < len then
+      if List.length enc < len then begin
+        assert (snd' = []) ;
         failwith "toto" (* to change *)
-      else
+      end else
         aux ((sym,enc)::accu) fst' snd'
   in
   let encoding_assoc = aux [] fst_table snd_table
@@ -71,26 +72,30 @@ let read_encoding ic =
       let l = input_byte ic + 1 in
       (s,l)
     ) in
+  let snd_table_len = len - number_of_syms * 2 in
   let snd_table =
-    ListExt.init (len - number_of_syms * 2) (fun _ -> input_byte ic)
+    ListExt.init snd_table_len (fun _ -> input_byte ic)
       |> bits_of_bytes
-      |> ListExt.take (len - completion_bits) in
+      |> ListExt.take (snd_table_len*8 - completion_bits) in
   build_encoding fst_table snd_table
 
 let read_content ic =
   let len = input_binary_int ic in
   let completion_bits = input_byte ic in
+  Printf.printf "completion_bits=%d\n" completion_bits ;
   ListExt.init len (fun _ -> input_byte ic)
     |> bits_of_bytes
-    |> ListExt.take (len - completion_bits)
-
+    |> ListExt.take (len*8 - completion_bits)
+ 
 let read file_path =
   try
     let ic = open_in_bin file_path in
     let header = read_header ic in
     let encoding = read_encoding ic in
     let content = read_content ic in
+    List.iter (fun b -> Printf.printf "%d " (if b then 1 else 0 )) content ; print_newline ();
     let tardis = Tardis.decompress header.filename encoding content in
+    close_in ic ;
     Ok (tardis)
   with
   | e -> raise e (* TODO *) 

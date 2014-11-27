@@ -68,13 +68,14 @@ let decode_input code input =
 
 let show code =
   Array.iteri (fun sym coding ->
-    Printf.printf "x%02x -> " sym ;
+    Printf.printf "%02x -> " sym ;
     if coding = [] then
       print_endline "undefined"
-    else
+    else begin
       List.iter (function
         | true -> print_char '1'
         | false -> print_char '0'
       ) coding ;
       print_newline ()
+    end
   ) code

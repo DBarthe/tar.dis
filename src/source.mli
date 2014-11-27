@@ -13,3 +13,6 @@ type t = byte list
 (** [from_file file_path] constructs a source from a file.
     @raise Sys_error when a problem occurs with the file. *)
 val from_file : string -> t
+
+(** [to_file source file_path] writes the [source] in [file_path]. *)
+val to_file : t -> string -> unit
