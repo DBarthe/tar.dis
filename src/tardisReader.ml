@@ -52,9 +52,9 @@ let valid_magic_code ic =
     with
     | End_of_file -> ""
   in
-  match this_mc != TardisSpec.magic_code with
-  | true -> ()
-  | false -> raise (Parsing_failure Not_tardis_file)
+  if this_mc != TardisSpec.magic_code then
+    raise (Parsing_failure Not_tardis_file)
+  else ()
 
 let read_filename ic =
   let name_len = input_size ic in
