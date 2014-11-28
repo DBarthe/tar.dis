@@ -33,7 +33,7 @@ let encode_sym code sym =
   | c -> c
 
 let encode_source code src =
-  let words = List.map (encode_sym code) src in
+  let words = ListExt.map_opti (encode_sym code) src in
   ListExt.flatten_opti words
 
 let match_prefix word prefix =
