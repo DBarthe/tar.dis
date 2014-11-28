@@ -52,7 +52,7 @@ let valid_magic_code ic =
     with
     | End_of_file -> ""
   in
-  if this_mc != TardisSpec.magic_code then
+  if this_mc <> TardisSpec.magic_code then
     raise (Parsing_failure Not_tardis_file)
   else ()
 
