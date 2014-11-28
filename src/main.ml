@@ -64,7 +64,7 @@ let main () =
     | Decompress -> decompress opts
   with
   | Sys_error s ->
-      Printf.eprintf "error: sys_error: %s\n" s ;
+      Printf.eprintf "error: %s\n" s ;
       exit 1
 
 let () = main ()

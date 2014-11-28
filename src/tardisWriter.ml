@@ -16,6 +16,7 @@ let open_file_out file_path =
     Open_trunc;
     Open_creat;
     Open_binary;
+    Open_excl;
   ] in
   open_out_gen flags basic_perm file_path
 
