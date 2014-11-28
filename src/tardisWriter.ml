@@ -34,8 +34,11 @@ let write_word oc w =
       aux 0 0 w
     end else
       match w with
-      | [] -> if accu_l > 0 then aux accu_b accu_l [false] else ()
-      | b::bs -> aux ((accu_b lsl 1) lor b2int b) (accu_l+1) bs
+      | [] ->
+        if accu_l = 0 then () else
+        aux accu_b accu_l [false]
+      | b::bs ->
+        aux ((accu_b lsl 1) lor b2int b) (accu_l+1) bs
   in aux 0 0 w
 
 (* calc number of bits to add to have a multiple of 8 *)
@@ -47,27 +50,29 @@ let calc_completion_bits_nbr nbits =
 let write_encoding oc t = 
   let source = Tardis.get_source t
   and encoding = Tardis.get_encoding t in
-  let fst_part =
-    let whole_list = List.map
-      (fun s -> (s, List.length (PrefixCode.encode_sym encoding s)))
-      (range 0 255) in
-    List.filter (fun (s,_) -> List.mem s source) whole_list in
-  let snd_part = 
-    PrefixCode.encode_source encoding (List.map fst fst_part) in
+  let fst_part = range 0 255
+    |> ListExt.map_opti (fun s ->
+      (s, List.length @@ PrefixCode.encode_sym encoding s))
+    |> List.filter (fun (s,_) -> List.mem s source)
+  in
+  let snd_part = fst_part
+    |> ListExt.map_opti fst
+    |> PrefixCode.encode_source encoding
+  in
   let snd_part_len = List.length snd_part in
-  let completion_bits = calc_completion_bits_nbr snd_part_len in
   let size = List.length fst_part * 2
     + snd_part_len / 8
-    + (if completion_bits != 0 then 1 else 0) in
+    + (if snd_part_len mod 8 = 0 then 0 else 1)
+  in
   (* size *)
   output_binary_int oc size ;
   (* number of symbols in the table *)
   output_binary_int oc (List.length fst_part) ;
   (* first part : sym -> length *)
-  List.iter (fun (s,l) ->
+  fst_part |> List.iter (fun (s,l) ->
     output_byte oc s ;
     output_byte oc (l-1) ;
-  ) fst_part ;
+  );
   (* second part : corresponding binary words *)
   write_word oc snd_part
 

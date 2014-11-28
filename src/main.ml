@@ -52,7 +52,7 @@ let decompress opts =
   try 
     let target_filename = opts.filename ^ ".undis" in (*to change*)
     match TardisReader.read opts.filename with
-    | TardisReader.Error err_msg ->
+    | TardisReader.Err err_msg ->
       Printf.eprintf "error: %s\n" err_msg
     | TardisReader.Ok tardis ->  
       Source.to_file (Tardis.get_source tardis) target_filename
