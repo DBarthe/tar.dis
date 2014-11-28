@@ -8,7 +8,7 @@ file_tmp=$file_src.tmp
 
 cat "$file_src" > "$file_tmp" 
 ./tardis -c "$file_tmp"
-./tardis -d "$file_tmp".dis
+./tardis -d "$file_tmp".dis -f "$file_tmp".dis.undis
 diff "$file_tmp" "$file_tmp".dis.undis
 rm "$file_tmp" "$file_tmp".dis "$file_tmp".dis.undis
 
