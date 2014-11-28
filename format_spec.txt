@@ -11,8 +11,6 @@ var           name                    string of length name_size
 
 4 bytes       size of encoding
               table
-1 bytes       number of bits to
-              ignore in the last
 4 bytes       number of symbols in the table
               encoding byte.
 var           encoding table           (see below)

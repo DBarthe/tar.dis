@@ -61,8 +61,6 @@ let write_encoding oc t =
     + (if completion_bits != 0 then 1 else 0) in
   (* size *)
   output_binary_int oc size ;
-  (* number of completion bits *)
-  output_byte oc completion_bits ;
   (* number of symbols in the table *)
   output_binary_int oc (List.length fst_part) ;
   (* first part : sym -> length *)
