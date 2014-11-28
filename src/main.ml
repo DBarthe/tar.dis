@@ -42,7 +42,7 @@ let parse_arguments () =
   and input_file_ref = ref ""
   and output_file_ref = ref "" in
   let speclist = [
-    "-c", Arg.Set compress_ref, "compression mode" ;
+    "-c", Arg.Set compress_ref, "compression mode (default)" ;
     "-d", Arg.Clear compress_ref, "decompression mode" ;
     "-f", Arg.Set_string output_file_ref, "optional output file";
   ] in
