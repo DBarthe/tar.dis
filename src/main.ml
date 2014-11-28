@@ -49,6 +49,14 @@ let parse_arguments () =
   Arg.parse speclist ((:=) input_file_ref) usage_msg ;
   create_arguments !compress_ref !input_file_ref !output_file_ref
 
+let calc_deflation t =
+  let source_len = List.length (Tardis.get_source t)
+  and content_len = List.length (Tardis.get_content t) / 8 in
+  let difference = source_len - content_len in
+  int_of_float (
+    float_of_int difference *. 100.0 /. float_of_int source_len
+  )
+
 let compress opts =
   let output_file =
     match opts.output_file with
@@ -57,7 +65,9 @@ let compress opts =
   in
   let source = Source.from_file opts.input_file in
   let tardis = Tardis.compress opts.input_file source in
-  TardisWriter.write tardis output_file
+  TardisWriter.write tardis output_file ;
+  Printf.printf "%s -> %s (%d%% deflated)\n"
+    opts.input_file output_file (calc_deflation tardis)
 
 let decompress opts =
   match TardisReader.read opts.input_file with
@@ -69,7 +79,10 @@ let decompress opts =
       | Some f -> f
       | None -> Tardis.get_filename tardis
     in
-    Source.to_file (Tardis.get_source tardis) output_file
+    Source.to_file (Tardis.get_source tardis) output_file ;
+    Printf.printf "%s -> %s\n"
+      opts.input_file output_file
+
 
 let main () =
   let opts = parse_arguments () in
