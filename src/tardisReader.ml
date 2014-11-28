@@ -18,6 +18,7 @@ type parsing_error =
   | Negative_size
   | Value_out_of_range
   | File_truncated
+  | Decoding_failure
 
 exception Parsing_failure of parsing_error
 
@@ -113,6 +114,7 @@ let mk_err file err =
     | Negative_size -> "invalid data (negative size)"
     | Value_out_of_range -> "invalid data"
     | File_truncated -> "file truncated or incorrect data"
+    | Decoding_failure -> "impossible to decompress"
   in
   Err (Printf.sprintf "%s: %s" file desc)
 
@@ -128,3 +130,4 @@ let read file_path =
   with
   | Parsing_failure err -> mk_err file_path err
   | End_of_file -> mk_err file_path File_truncated
+  | PrefixCode.Decoding_failure _ -> mk_err file_path Decoding_failure
