@@ -49,15 +49,12 @@ let compress opts =
   | e -> raise e (* todo *)
 
 let decompress opts = 
-  try 
-    let target_filename = opts.filename ^ ".undis" in (*to change*)
-    match TardisReader.read opts.filename with
-    | TardisReader.Err err_msg ->
-      Printf.eprintf "error: %s\n" err_msg
-    | TardisReader.Ok tardis ->  
-      Source.to_file (Tardis.get_source tardis) target_filename
-  with
-  | e -> raise e (* todo *)
+  let target_filename = opts.filename ^ ".undis" in (*to change*)
+  match TardisReader.read opts.filename with
+  | TardisReader.Err err_msg ->
+    Printf.eprintf "error: %s\n" err_msg
+  | TardisReader.Ok tardis ->  
+    Source.to_file (Tardis.get_source tardis) target_filename
 
 let main () =
   let opts = parse_arguments () in
