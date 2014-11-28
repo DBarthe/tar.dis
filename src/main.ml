@@ -13,48 +13,63 @@
 
 type mode = Compress | Decompress
 
-type options = {
+type arguments = {
   mode : mode;
-  filename: string;
+  input_file: string;
+  output_file: string option;
 }
 
 let progname = Sys.argv.(0)
 
 let usage_msg =
-  Printf.sprintf "usage: %s [-c|-d] filename" progname
+  Printf.sprintf "usage: %s [-c|-d] [-f output_file ] input_file" progname
+
+let create_arguments compress input_file output_file =
+  if input_file = "" then begin
+    prerr_endline "error: an input file is required" ;
+    exit 1
+  end else
+    let mode =
+      if compress then Compress else Decompress
+    and output_file =
+      if output_file = "" then None else Some output_file
+    in
+    { mode ; input_file ; output_file } 
 
 (* exit program when the command line is incorrect *)
 let parse_arguments () =
-  let compress = ref true (* false for decompress *)
-  and filename = ref "" in
+  let compress_ref = ref true (* false for decompress *)
+  and input_file_ref = ref ""
+  and output_file_ref = ref "" in
   let speclist = [
-    "-c", Arg.Set compress, "compression mode" ;
-    "-d", Arg.Clear compress, "decompression mode" ;
+    "-c", Arg.Set compress_ref, "compression mode" ;
+    "-d", Arg.Clear compress_ref, "decompression mode" ;
+    "-f", Arg.Set_string output_file_ref, "optional output file";
   ] in
-  Arg.parse speclist ((:=) filename) usage_msg ;
-  let mode = if !compress then Compress else Decompress in
-  if !filename = "" then begin
-    prerr_endline "error: no filename." ;
-    exit 1
-  end else
-    { mode; filename = !filename }
+  Arg.parse speclist ((:=) input_file_ref) usage_msg ;
+  create_arguments !compress_ref !input_file_ref !output_file_ref
 
 let compress opts =
-  try
-    let target_filename = opts.filename ^ ".dis" 
-    and source = Source.from_file opts.filename in
-    let tardis = Tardis.compress opts.filename source in
-    TardisWriter.write tardis target_filename
-  with
-  | e -> raise e (* todo *)
+  let output_file =
+    match opts.output_file with
+    | Some f -> f
+    | None -> opts.input_file ^ ".dis"
+  in
+  let source = Source.from_file opts.input_file in
+  let tardis = Tardis.compress opts.input_file source in
+  TardisWriter.write tardis output_file
 
-let decompress opts = 
-  let target_filename = opts.filename ^ ".undis" in (*to change*)
-  match TardisReader.read opts.filename with
+let decompress opts =
+  match TardisReader.read opts.input_file with
   | TardisReader.Err err_msg ->
     Printf.eprintf "error: %s\n" err_msg
   | TardisReader.Ok tardis ->  
-    Source.to_file (Tardis.get_source tardis) target_filename
+    let output_file =
+      match opts.output_file with
+      | Some f -> f
+      | None -> Tardis.get_filename tardis
+    in
+    Source.to_file (Tardis.get_source tardis) output_file
 
 let main () =
   let opts = parse_arguments () in

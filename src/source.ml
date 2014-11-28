@@ -22,6 +22,7 @@ let to_file source file_path =
     Open_trunc;
     Open_creat;
     Open_binary;
+    Open_excl;
   ] in
   let oc = open_out_gen flags 420 file_path in
   List.iter (output_byte oc) source ;
