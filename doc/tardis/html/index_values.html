@@ -11,7 +11,10 @@
 <link title="Huffman" rel="Chapter" href="Huffman.html">
 <link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
 <link title="Source" rel="Chapter" href="Source.html">
-<link title="Tardis" rel="Chapter" href="Tardis.html"><title>Index of values</title>
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="TardisReader" rel="Chapter" href="TardisReader.html">
+<link title="TardisSpec" rel="Chapter" href="TardisSpec.html">
+<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>Index of values</title>
 </head>
 <body>
 <div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
@@ -26,15 +29,29 @@
 </div>
 </td></tr>
 <tr><td align="left"><br>C</td></tr>
-<tr><td><a href="Tardis.html#VALcreate">create</a> [<a href="Tardis.html">Tardis</a>]</td>
+<tr><td><a href="Tardis.html#VALcompress">compress</a> [<a href="Tardis.html">Tardis</a>]</td>
 <td><div class="info">
-<code class="code">create filename encoding content</code> constructs and returns a value
-    of type <code class="code">t</code>.
+<code class="code">compress filename source</code> compresses the <code class="code">source</code> and creates a <code class="code">t</code>
+    with the name <code class="code">filename</code>.
 </div>
 </td></tr>
 <tr><td><a href="FreqTable.html#VALcreate">create</a> [<a href="FreqTable.html">FreqTable</a>]</td>
 <td><div class="info">
 <code class="code">create src</code> returns the frequency table corresponding the source <code class="code">src</code>.
+</div>
+</td></tr>
+<tr><td align="left"><br>D</td></tr>
+<tr><td><a href="PrefixCode.html#VALdecode_input">decode_input</a> [<a href="PrefixCode.html">PrefixCode</a>]</td>
+<td><div class="info">
+<code class="code">decode_input code input</code> decodes <code class="code">input</code> with <code class="code">code</code> and returns the
+    source decoded.
+</div>
+</td></tr>
+<tr><td><a href="Tardis.html#VALdecompress">decompress</a> [<a href="Tardis.html">Tardis</a>]</td>
+<td><div class="info">
+<code class="code">decompress filename encoding content</code> decompress the <code class="code">content</code>
+    which has been encoded with <code class="code">encoding</code>, then creates a <code class="code">t</code> with the
+    name <code class="code">filename</code>.
 </div>
 </td></tr>
 <tr><td align="left"><br>E</td></tr>
@@ -81,8 +98,15 @@
 <code class="code">get_source t</code> returns the source contained in <code class="code">t</code>.
 </div>
 </td></tr>
+<tr><td align="left"><br>M</td></tr>
+<tr><td><a href="TardisSpec.html#VALmagic_code">magic_code</a> [<a href="TardisSpec.html">TardisSpec</a>]</td>
+<td><div class="info">
+<code class="code">magic_code</code> is a 4 bytes string presents at the start of each
+    tardis file.
+</div>
+</td></tr>
 <tr><td align="left"><br>R</td></tr>
-<tr><td><a href="Tardis.html#VALread">read</a> [<a href="Tardis.html">Tardis</a>]</td>
+<tr><td><a href="TardisReader.html#VALread">read</a> [<a href="TardisReader.html">TardisReader</a>]</td>
 <td><div class="info">
 <code class="code">read file_path</code> reads the file <code class="code">file_path</code>, parses it, and
     returns a <code class="code">parsing_result</code>.
@@ -99,6 +123,12 @@
 <code class="code">show code</code> print the code in the standard output
 </div>
 </td></tr>
+<tr><td align="left"><br>T</td></tr>
+<tr><td><a href="Source.html#VALto_file">to_file</a> [<a href="Source.html">Source</a>]</td>
+<td><div class="info">
+<code class="code">to_file source file_path</code> writes the <code class="code">source</code> in <code class="code">file_path</code>.
+</div>
+</td></tr>
 <tr><td align="left"><br>U</td></tr>
 <tr><td><a href="PrefixCode.html#VALunset">unset</a> [<a href="PrefixCode.html">PrefixCode</a>]</td>
 <td><div class="info">
@@ -106,7 +136,7 @@
 </div>
 </td></tr>
 <tr><td align="left"><br>W</td></tr>
-<tr><td><a href="Tardis.html#VALwrite">write</a> [<a href="Tardis.html">Tardis</a>]</td>
+<tr><td><a href="TardisWriter.html#VALwrite">write</a> [<a href="TardisWriter.html">TardisWriter</a>]</td>
 <td><div class="info">
 <code class="code">write t file_path</code> writes <code class="code">t</code> in the file <code class="code">file_path</code>.
 </div>

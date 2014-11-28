@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Tardis.html">
+<link rel="next" href="TardisSpec.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="FreqTable" rel="Chapter" href="FreqTable.html">
+<link title="Huffman" rel="Chapter" href="Huffman.html">
+<link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
+<link title="Source" rel="Chapter" href="Source.html">
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="TardisReader" rel="Chapter" href="TardisReader.html">
+<link title="TardisSpec" rel="Chapter" href="TardisSpec.html">
+<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>TardisReader</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Tardis.html" title="Tardis">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="TardisSpec.html" title="TardisSpec">Next</a>
+</div>
+<h1>Module <a href="type_TardisReader.html">TardisReader</a></h1>
+
+<pre><span class="keyword">module</span> TardisReader: <code class="code">sig</code> <a href="TardisReader.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Read and parse tardis files.<br>
+<b>Author(s):</b> barthelemy delemotte<br>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEparsing_result"><span class="keyword">type</span> <code class="type"></code>parsing_result</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparsing_result.Err"><span class="constructor">Err</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparsing_result.Ok"><span class="constructor">Ok</span></span> <span class="keyword">of</span> <code class="type"><a href="Tardis.html#TYPEt">Tardis.t</a></code></code></td>
+
+</tr></table>
+
+<div class="info ">
+The type returned by the tardis parser.<br>
+</div>
+
+
+<pre><span id="VALread"><span class="keyword">val</span> read</span> : <code class="type">string -> <a href="TardisReader.html#TYPEparsing_result">parsing_result</a></code></pre><div class="info ">
+<code class="code">read file_path</code> reads the file <code class="code">file_path</code>, parses it, and
+    returns a <code class="code">parsing_result</code>.<br>
+</div>
+</body></html>

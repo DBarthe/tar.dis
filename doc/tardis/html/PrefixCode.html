@@ -15,7 +15,10 @@
 <link title="Huffman" rel="Chapter" href="Huffman.html">
 <link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
 <link title="Source" rel="Chapter" href="Source.html">
-<link title="Tardis" rel="Chapter" href="Tardis.html"><title>PrefixCode</title>
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="TardisReader" rel="Chapter" href="TardisReader.html">
+<link title="TardisSpec" rel="Chapter" href="TardisSpec.html">
+<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>PrefixCode</title>
 </head>
 <body>
 <div class="navbar"><a class="pre" href="Huffman.html" title="Huffman">Previous</a>
@@ -42,7 +45,9 @@ The type <code class="code">word</code> is a list of booleans and represents a b
 </div>
 
 
-<pre><span id="EXCEPTIONCoding_undef"><span class="keyword">exception</span> Coding_undef</span></pre>
+<pre><span id="EXCEPTIONCoding_undef"><span class="keyword">exception</span> Coding_undef</span> <span class="keyword">of</span> <code class="type">int</code></pre>
+
+<pre><span id="EXCEPTIONDecoding_failure"><span class="keyword">exception</span> Decoding_failure</span> <span class="keyword">of</span> <code class="type">(<a href="Source.html#TYPEt">Source.t</a> * <a href="PrefixCode.html#TYPEword">word</a>)</code></pre>
 
 <pre><span id="VALempty"><span class="keyword">val</span> empty</span> : <code class="type">unit -> <a href="PrefixCode.html#TYPEt">t</a></code></pre><div class="info ">
 <code class="code">empty ()</code> returns a new fresh and undefined prefix code.<br>
@@ -58,11 +63,21 @@ The type <code class="code">word</code> is a list of booleans and represents a b
 
 <pre><span id="VALencode_sym"><span class="keyword">val</span> encode_sym</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="Source.html#TYPEbyte">Source.byte</a> -> <a href="PrefixCode.html#TYPEword">word</a></code></pre><div class="info ">
 <code class="code">encode_sym code sym</code> returns the word which encodes <code class="code">sym</code>.<br>
+<b>Raises</b> <code>Coding_undef</code> (<code class="code">sym</code>) if the coding is not defined for <code class="code">sym</code>.<br>
 </div>
 
 <pre><span id="VALencode_source"><span class="keyword">val</span> encode_source</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="Source.html#TYPEt">Source.t</a> -> <a href="PrefixCode.html#TYPEword">word</a></code></pre><div class="info ">
 <code class="code">encode_source code src</code> returns a long word which is the concatenation
     of the encoding of all symbols contained in <code class="code">src</code>.<br>
+<b>Raises</b> <code>Coding_undef</code> (sym) if <code class="code">sym</code> is a symbol if <code class="code">src</code> that has no
+    defined coding.<br>
+</div>
+
+<pre><span id="VALdecode_input"><span class="keyword">val</span> decode_input</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> <a href="PrefixCode.html#TYPEword">word</a> -> <a href="Source.html#TYPEt">Source.t</a></code></pre><div class="info ">
+<code class="code">decode_input code input</code> decodes <code class="code">input</code> with <code class="code">code</code> and returns the
+    source decoded.<br>
+<b>Raises</b> <code>Decoding_failure</code> (decoded, remaining) if the <code class="code">input</code> can't be
+    decoded.<br>
 </div>
 
 <pre><span id="VALshow"><span class="keyword">val</span> show</span> : <code class="type"><a href="PrefixCode.html#TYPEt">t</a> -> unit</code></pre><div class="info ">

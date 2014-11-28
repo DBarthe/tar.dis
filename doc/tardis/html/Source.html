@@ -15,7 +15,10 @@
 <link title="Huffman" rel="Chapter" href="Huffman.html">
 <link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
 <link title="Source" rel="Chapter" href="Source.html">
-<link title="Tardis" rel="Chapter" href="Tardis.html"><title>Source</title>
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="TardisReader" rel="Chapter" href="TardisReader.html">
+<link title="TardisSpec" rel="Chapter" href="TardisSpec.html">
+<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>Source</title>
 </head>
 <body>
 <div class="navbar"><a class="pre" href="PrefixCode.html" title="PrefixCode">Previous</a>
@@ -45,5 +48,9 @@ The source type. A synonym for list of bytes<br>
 <pre><span id="VALfrom_file"><span class="keyword">val</span> from_file</span> : <code class="type">string -> <a href="Source.html#TYPEt">t</a></code></pre><div class="info ">
 <code class="code">from_file file_path</code> constructs a source from a file.<br>
 <b>Raises</b> <code>Sys_error</code> when a problem occurs with the file.<br>
+</div>
+
+<pre><span id="VALto_file"><span class="keyword">val</span> to_file</span> : <code class="type"><a href="Source.html#TYPEt">t</a> -> string -> unit</code></pre><div class="info ">
+<code class="code">to_file source file_path</code> writes the <code class="code">source</code> in <code class="code">file_path</code>.<br>
 </div>
 </body></html>

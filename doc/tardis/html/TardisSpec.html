@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="Start" href="index.html">
-<link rel="previous" href="FreqTable.html">
-<link rel="next" href="PrefixCode.html">
+<link rel="previous" href="TardisReader.html">
+<link rel="next" href="TardisWriter.html">
 <link rel="Up" href="index.html">
 <link title="Index of types" rel=Appendix href="index_types.html">
 <link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
@@ -18,23 +18,23 @@
 <link title="Tardis" rel="Chapter" href="Tardis.html">
 <link title="TardisReader" rel="Chapter" href="TardisReader.html">
 <link title="TardisSpec" rel="Chapter" href="TardisSpec.html">
-<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>Huffman</title>
+<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>TardisSpec</title>
 </head>
 <body>
-<div class="navbar"><a class="pre" href="FreqTable.html" title="FreqTable">Previous</a>
+<div class="navbar"><a class="pre" href="TardisReader.html" title="TardisReader">Previous</a>
 &nbsp;<a class="up" href="index.html" title="Index">Up</a>
-&nbsp;<a class="post" href="PrefixCode.html" title="PrefixCode">Next</a>
+&nbsp;<a class="post" href="TardisWriter.html" title="TardisWriter">Next</a>
 </div>
-<h1>Module <a href="type_Huffman.html">Huffman</a></h1>
+<h1>Module <a href="type_TardisSpec.html">TardisSpec</a></h1>
 
-<pre><span class="keyword">module</span> Huffman: <code class="code">sig</code> <a href="Huffman.html">..</a> <code class="code">end</code></pre><div class="info module top">
-Huffman algorithm : find an optimal prefix code for a source.<br>
-<b>Author(s):</b> Barthelemy Delemotte<br>
+<pre><span class="keyword">module</span> TardisSpec: <code class="code">sig</code> <a href="TardisSpec.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Specification of .tar.dis format.<br>
+<b>Author(s):</b> barthelemy delemotte<br>
 </div>
 <hr width="100%">
 
-<pre><span id="VALalgorithm"><span class="keyword">val</span> algorithm</span> : <code class="type"><a href="FreqTable.html#TYPEt">FreqTable.t</a> -> <a href="PrefixCode.html#TYPEt">PrefixCode.t</a></code></pre><div class="info ">
-<code class="code">algorithm freq_table</code> returns an optimal prefix code for a source
-    with the given frenquency table <code class="code">freq_table</code>.<br>
+<pre><span id="VALmagic_code"><span class="keyword">val</span> magic_code</span> : <code class="type">string</code></pre><div class="info ">
+<code class="code">magic_code</code> is a 4 bytes string presents at the start of each
+    tardis file.<br>
 </div>
 </body></html>

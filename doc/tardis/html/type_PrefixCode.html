@@ -10,17 +10,22 @@
 <link title="Huffman" rel="Chapter" href="Huffman.html">
 <link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
 <link title="Source" rel="Chapter" href="Source.html">
-<link title="Tardis" rel="Chapter" href="Tardis.html"><title>PrefixCode</title>
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="TardisReader" rel="Chapter" href="TardisReader.html">
+<link title="TardisSpec" rel="Chapter" href="TardisSpec.html">
+<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>PrefixCode</title>
 </head>
 <body>
 <code class="code"><span class="keyword">sig</span><br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;word&nbsp;=&nbsp;bool&nbsp;list<br>
-&nbsp;&nbsp;<span class="keyword">exception</span>&nbsp;<span class="constructor">Coding_undef</span><br>
+&nbsp;&nbsp;<span class="keyword">exception</span>&nbsp;<span class="constructor">Coding_undef</span>&nbsp;<span class="keyword">of</span>&nbsp;int<br>
+&nbsp;&nbsp;<span class="keyword">exception</span>&nbsp;<span class="constructor">Decoding_failure</span>&nbsp;<span class="keyword">of</span>&nbsp;(<span class="constructor">Source</span>.t&nbsp;*&nbsp;<span class="constructor">PrefixCode</span>.word)<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;empty&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;set&nbsp;:&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.byte&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.word&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;unset&nbsp;:&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.byte&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;encode_sym&nbsp;:&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.byte&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.word<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;encode_source&nbsp;:&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.word<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;decode_input&nbsp;:&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.word&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;show&nbsp;:&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
 <span class="keyword">end</span></code></body></html>

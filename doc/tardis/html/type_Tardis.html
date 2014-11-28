@@ -10,18 +10,18 @@
 <link title="Huffman" rel="Chapter" href="Huffman.html">
 <link title="PrefixCode" rel="Chapter" href="PrefixCode.html">
 <link title="Source" rel="Chapter" href="Source.html">
-<link title="Tardis" rel="Chapter" href="Tardis.html"><title>Tardis</title>
+<link title="Tardis" rel="Chapter" href="Tardis.html">
+<link title="TardisReader" rel="Chapter" href="TardisReader.html">
+<link title="TardisSpec" rel="Chapter" href="TardisSpec.html">
+<link title="TardisWriter" rel="Chapter" href="TardisWriter.html"><title>Tardis</title>
 </head>
 <body>
 <code class="code"><span class="keyword">sig</span><br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t<br>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;parsing_result&nbsp;=&nbsp;<span class="constructor">Error</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ok</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Tardis</span>.t<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;create&nbsp;:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.word&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Tardis</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;compress&nbsp;:&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Tardis</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;decompress&nbsp;:&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.word&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Tardis</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get_filename&nbsp;:&nbsp;<span class="constructor">Tardis</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get_source&nbsp;:&nbsp;<span class="constructor">Tardis</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Source</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get_encoding&nbsp;:&nbsp;<span class="constructor">Tardis</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get_content&nbsp;:&nbsp;<span class="constructor">Tardis</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">PrefixCode</span>.word<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;write&nbsp;:&nbsp;<span class="constructor">Tardis</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;read&nbsp;:&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Tardis</span>.parsing_result<br>
 <span class="keyword">end</span></code></body></html>
