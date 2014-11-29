@@ -13,6 +13,7 @@ $ git clone --recursive git@github.com:DBarthe/tar.dis.git
 >or
 ```bash
 $ git clone git@github.com:DBarthe/tar.dis.git
+$ cd tar.dis
 $ git submodule init
 $ git submodule update
 ```
